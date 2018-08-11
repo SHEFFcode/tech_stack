@@ -13,7 +13,6 @@ class ListItem extends Component {
   render() {
     const { library } = this.props
     const { titleStyle } = styles
-    console.log(library)
 
     return (
       <CardSection>
