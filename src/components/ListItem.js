@@ -12,9 +12,17 @@ const styles = {
 }
 
 class ListItem extends Component {
+  renderDescription() {
+    const { library, selectedLibraryId } = this.props
+    console.log(library.item.description)
+
+    if (library.item.id == selectedLibraryId) {
+      return <Text>{library.item.description}</Text>
+    }
+  }
+
   render() {
     const {
-      library,
       library: {
         item: { id, title },
       },
@@ -22,21 +30,24 @@ class ListItem extends Component {
     } = this.props
     const { titleStyle } = styles
 
-    console.log(this.props)
-
     return (
       <TouchableWithoutFeedback onPress={() => selectLibrary(id)}>
         <View>
           <CardSection>
             <Text style={titleStyle}>{title}</Text>
           </CardSection>
+          {this.renderDescription()}
         </View>
       </TouchableWithoutFeedback>
     )
   }
 }
 
+const mapStateToProps = state => {
+  return { selectedLibraryId: state.selectedLibraryId }
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   actions,
 )(ListItem)

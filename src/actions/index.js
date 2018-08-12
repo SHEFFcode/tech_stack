@@ -1,1 +1,3 @@
-export const selectLibrary = id => ({ type: 'selectLibrary', payload: id })
+export const selectLibrary = id => {
+  return { type: 'select_library', payload: id }
+}
